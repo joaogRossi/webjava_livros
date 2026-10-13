@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastro de Livros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Cadastro de Livros</h1>
+
+<main>
+    <!-- Criar livro -->
+    <section class="card">
+        <h2>Criar</h2>
+        <input type="text" id="titulo" placeholder="Título">
+        <input type="text" id="autor" placeholder="Autor">
+        <input type="number" id="anoPublicacao" placeholder="Ano de publicação">
+        <input type="text" id="genero" placeholder="Gênero">
+        <input type="number" id="preco" placeholder="Preço" step="0.01">
+        <button onclick="criar()">Salvar</button>
+    </section>
+
+    <!-- Buscar livro -->
+    <section class="card">
+        <h2>Buscar</h2>
+        <input type="text" id="buscarTitulo" placeholder="Título">
+        <button onclick="buscar()">Buscar</button>
+        <pre id="resultadoBuscar"></pre>
+    </section>
+
+    <!-- Deletar livro -->
+    <section class="card">
+        <h2>Deletar</h2>
+        <input type="text" id="deletarTitulo" placeholder="Título">
+        <button onclick="deletar()">Deletar</button>
+    </section>
+
+    <!-- Atualizar livro -->
+    <section class="card">
+        <h2>Atualizar</h2>
+        <input type="number" id="id" placeholder="ID">
+        <input type="text" id="novoTitulo" placeholder="Novo título">
+        <input type="text" id="novoAutor" placeholder="Novo autor">
+        <input type="number" id="novoAno" placeholder="Novo ano de publicação">
+        <input type="text" id="novoGenero" placeholder="Novo gênero">
+        <input type="number" id="novoPreco" placeholder="Novo preço" step="0.01">
+        <button onclick="atualizar()">Atualizar</button>
+    </section>
+</main>
+
+<script>
+    const api = "/livros";
+
+    // Devolve o valor do campo, ou null se estiver vazio
+    function texto(id) {
+        const v = document.getElementById(id).value.trim();
+        return v === "" ? null : v;
+    }
+
+    function numero(id) {
+        const v = document.getElementById(id).value;
+        return v === "" ? null : Number(v);
+    }
+
+    async function criar() {
+        const resp = await fetch(api, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                titulo: texto("titulo"),
+                autor: texto("autor"),
+                anoPublicacao: numero("anoPublicacao"),
+                genero: texto("genero"),
+                preco: numero("preco")
+            })
+        });
+        alert(resp.ok ? "Livro criado!" : "Erro ao criar!");
+    }
+
+    async function buscar() {
+        const titulo = document.getElementById("buscarTitulo").value;
+        const resp = await fetch(`${api}?titulo=${encodeURIComponent(titulo)}`);
+        if (resp.ok) {
+            const data = await resp.json();
+            document.getElementById("resultadoBuscar").innerText = JSON.stringify(data, null, 2);
+        } else {
+            document.getElementById("resultadoBuscar").innerText = "Livro não encontrado!";
+        }
+    }
+
+    async function deletar() {
+        const titulo = document.getElementById("deletarTitulo").value;
+        const resp = await fetch(`${api}?titulo=${encodeURIComponent(titulo)}`, { method: "DELETE" });
+        alert(resp.ok ? "Livro deletado!" : "Erro ao deletar!");
+    }
+
+    async function atualizar() {
+        const id = document.getElementById("id").value;
+        // Campos vazios vão como null e o service mantém o valor antigo
+        const resp = await fetch(`${api}?id=${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                titulo: texto("novoTitulo"),
+                autor: texto("novoAutor"),
+                anoPublicacao: numero("novoAno"),
+                genero: texto("novoGenero"),
+                preco: numero("novoPreco")
+            })
+        });
+        alert(resp.ok ? "Livro atualizado!" : "Erro ao atualizar!");
+    }
+</script>
+</body>
+</html>

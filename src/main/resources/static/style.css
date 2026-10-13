@@ -1,0 +1,80 @@
+:root {
+    --roxo: #42227a;
+    --laranja: #ff914d;
+    --fundo: #f6f2fb;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--fundo);
+    color: #2b2b2b;
+}
+
+h1 {
+    color: var(--roxo);
+    text-align: center;
+    padding-bottom: 12px;
+    border-bottom: 4px solid var(--laranja);
+    max-width: 640px;
+    margin: 10px auto 24px;
+}
+
+main {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    border-left: 6px solid var(--laranja);
+    padding: 4px 20px 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(66, 34, 122, 0.12);
+}
+
+h2 {
+    color: var(--roxo);
+}
+
+input, button {
+    margin: 5px 0;
+    padding: 9px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #cfc3e3;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: 2px solid var(--laranja);
+    border-color: var(--laranja);
+}
+
+button {
+    background-color: var(--laranja);
+    color: var(--roxo);
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    padding: 9px 22px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: var(--roxo);
+    color: white;
+}
+
+pre {
+    background: var(--fundo);
+    border-radius: 5px;
+    padding: 10px;
+    white-space: pre-wrap;
+}
