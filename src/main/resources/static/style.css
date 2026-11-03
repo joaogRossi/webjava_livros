@@ -78,3 +78,50 @@ pre {
     padding: 10px;
     white-space: pre-wrap;
 }
+
+/* Preciso que você crie uma interface web completa (HTML5, CSS3 e JavaScript Vanilla) para consumir os endpoints da minha API REST desenvolvida em Java Spring Boot para gestão de livros
+
+Contexto e Objetivo:
+A aplicação consiste num sistema de Cadastro de Livros ("cadastro-livros"). O objetivo é ter uma interface responsiva, moderna e intuitiva que permita realizar o CRUD completo de livros consumindo a API local em http://localhost:8080/livros.
+
+Paleta de cores e estilização:
+A interface deve utilizar obrigatoriamente as seguintes cores personalizadas (definidas através de variáveis no início do ficheiro CSS):
+- Cor Principal: #4F46E5 (Azul/Índigo para cabeçalhos e destaques)
+- Cor Secundária/Hover: #4338CA (Tom mais escuro para estados de transição)
+- Fundo da Página (Background): #F9FAFB (Cinza muito claro)
+- Fundo dos Contentores/Cartões: #FFFFFF (Branco puro)
+- Texto Principal: #111827 (Escuro de alto contraste)
+- Texto Secundário: #6B7280 (Cinza médio)
+- Bordas e Divisórias: #E5E7EB
+
+Estrutura dos dados:
+O modelo de objeto JSON esperado pelo backend possui a seguinte estrutura:
+{
+  "id": 1,          // Long/Integer (gerado automaticamente pela base de dados)
+  "titulo": "Nome do Livro", // String (obrigatório)
+  "autor": "Nome do Autor",   // String (obrigatório)
+  "preco": 49.90              // Double/Float (obrigatório)
+}
+
+Endpoints e verbos http da api java
+O frontend deve obrigatoriamente integrar os seguintes verbos HTTP e rotas:
+- GET /livros: Listar todos os livros registados no carregamento da página.
+- POST /livros: Registar um novo livro via body JSON contendo titulo, autor e preco.
+- PUT /livros/{id}: Atualizar as informações de um livro existente selecionado na interface.
+- DELETE /livros/{id}: Eliminar um livro específico selecionado a partir do seu ID.
+
+Componentes e requisitos da interface (UI/UX)
+- Formulário de Registo/Edição:
+  - Campos: Título (input text), Autor (input text), Preço (input number/decimal) e um campo oculto para ID.
+  - Botões: "Guardar Livro" (estilizado com a cor verde de sucesso) e "Cancelar/Limpar" (estilizado com tom neutro).
+- Tabela / Lista de Livros:
+  - Colunas: ID, Título, Autor, Preço (formatado em R$) e Ações.
+  - Coluna Ações com botões "Editar" (aplica a cor principal) e "Apagar" (aplica a cor de erro/vermelho).
+- Feedback ao Utilizador: Exibir mensagens dinâmicas de sucesso e erro ao realizar cada operação.
+
+Requisitos técnicos do código gerado
+- HTML semântico com divisões claras entre o formulário e a listagem.
+- CSS moderno utilizando as variáveis `:root` com a paleta de cores especificada, layout responsivo (Flexbox/Grid) e transições suaves nos botões.
+- JavaScript separado (ou script embutido limpo) utilizando a Fetch API nativa (async/await) para lidar com as requisições HTTP, headers ('Content-Type': 'application/json'), conversão de dados em JSON e atualização dinâmica do DOM sem recarregar a página.
+
+Por favor, forneça os ficheiros completos (`index.html`, `style.css` e `app.js`) funcionais.*/
